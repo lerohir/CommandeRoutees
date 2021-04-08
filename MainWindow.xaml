@@ -1,0 +1,37 @@
+﻿<Window x:Class="CommandeRoutees.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CommandeRoutees"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    
+    <Grid>
+        <Button x:Name="ButtonCouper" Content="Couper" HorizontalAlignment="Left" Margin="262,379,0,0" VerticalAlignment="Top" Height="32" Width="51" Command="ApplicationCommands.Cut"/>
+        <Button x:Name="ButtonCopier" Content="Copier" HorizontalAlignment="Left" Margin="354,379,0,0" VerticalAlignment="Top" Height="32" Width="46" Command="ApplicationCommands.Copy"/>
+        <Button x:Name="ButtonColler" Content="Coller" HorizontalAlignment="Left" Margin="436,379,0,0" VerticalAlignment="Top" Height="32" Width="47" Command="ApplicationCommands.Paste"/>
+        <RichTextBox x:Name="Box" Margin="90,29,90,60" BorderThickness="3">
+            
+        </RichTextBox>
+    </Grid>
+    
+    <Window.CommandBindings>
+        <!-- Pour effacer le texte on appelera la méthode Efface_Texte_Execute la méthode Efface_Text_CanExecute ne sera appelée qu'en cas d'échec de la commande-->
+        <CommandBinding 
+            Command="ApplicationCommands.Cut" 
+            Executed="Couper_Executed" 
+            CanExecute="CouperCopierColler_CanExecute"/>
+        <!-- Pour restaurer le texte on appelera la méthode Restaure_Texte_Execute la méthode Restaure_Text_CanExecute ne sera appelée qu'en cas d'échec de la commande-->
+        <CommandBinding 
+            Command="ApplicationCommands.Copy" 
+            Executed="Copier_Executed"
+            CanExecute="CouperCopierColler_CanExecute" />
+        
+        <CommandBinding 
+            Command="ApplicationCommands.Paste" 
+            Executed="Coller_Executed" 
+            CanExecute="CouperCopierColler_CanExecute" />
+    </Window.CommandBindings>
+    
+</Window>
